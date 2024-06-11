@@ -9,7 +9,7 @@ const Nav = () => {
 
   return (
     <div className="bg-black border-2">
-      <div className="flex justify-between items-center mt-2 mb-4">
+      <div className="flex justify-between items-center mt-2 mb-4 bg-gray-400">
         <div>
           <Link className="text-white font-bold" href="/">
             <Image
@@ -48,7 +48,9 @@ const Nav = () => {
             className="text-white font-bold"
             href="/user-profile">
               <Image
-                src={session?.user.image}
+                src={
+                  session?.user.image ? session.user.image : "/images/userProfile.png"
+                }
                 width={37}
                 height={37}
                 className="inline m-2 rounded-full"

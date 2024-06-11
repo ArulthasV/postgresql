@@ -11,6 +11,7 @@ export const POST = async (req) => {
                 password:password
             }
         })
+        console.log("userExist : ",userExist);
         if(!userExist){
             return new Response(null,{status:404})
         }
