@@ -17,8 +17,8 @@ const Register = () => {
       });
       if (response.status === 201) {
         toast.success("Successfully registered!")
-      } else if (response.status === 400) {
-        throw new Error("User already registere! You can login straight away.");
+      } else if (response.status === 409) {
+        throw new Error("Email already registered!");
       } else if(response.status === 500) {
         throw new Error("Internal server error!");
       }

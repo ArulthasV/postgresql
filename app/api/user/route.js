@@ -1,26 +1,16 @@
-import { PrismaClient } from "@prisma/client"
-
-const prisma = new PrismaClient()
+import {pool} from "@utils/database"
 
 export const POST = async (req) => {   
     try{
         const {email,password} = await req.json()
-        const userExist = await prisma.users.findUnique({
-            where:{
-                email:email
-            }
-        })
-        if(!userExist){
-            const result = await prisma.users.create({
-                data:{
-                    email,
-                    password
-                }
-            })
-            return new Response(null,{status:201})
+        const userExist = await pool.query('select * from users where email=$1',[email])
+        
+        if(userExist.rows.length>0){
+            return new Response(null,{status:409})
         }
         else{
-            return new Response(null,{status:400})
+            const result = await pool.query('insert into users(email,password) values($1,$2)',[email,password])
+            return new Response(null,{status:201})
         }
     }catch(err){
         console.log(err)

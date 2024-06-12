@@ -2,14 +2,11 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient()
+import { pool } from "@utils/database";
 
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      name: "Credentials",
 
       async authorize(credentials) {
 
@@ -48,26 +45,15 @@ const handler = NextAuth({
       }
       else{
         try {
-          const userExists = await prisma.googleusers.findUnique({
-            where:{
-              provider:account.provider
-            }
-          })
+          const userExists = await pool.query('select * from googleusers where provider=$1',[account.provider])
   
-          if (!userExists) {
+          if (userExists.rows.length === 0) {
             const name = user.name
             const email = user.email
             const image = user.image
             const provider = account.provider
 
-            const result = await prisma.googleusers.create({
-              data:{
-                name,
-                email,
-                image,
-                provider
-              }
-            })
+            const result = await pool.query('insert into googleusers(name,email,image,provider) values($1,$2,$3,$4)',[name,email,image,provider])
           }
   
           return true;

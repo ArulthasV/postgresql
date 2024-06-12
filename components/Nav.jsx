@@ -61,7 +61,7 @@ const Nav = () => {
         ) : (
           <>
             <Link
-              href="/api/auth/signin"
+              href="/api/auth/signin?callbackUrl=/home"
               className="hover:bg-blue-700 rounded text-white font-bold py-1 px-2 m-2 focus:outline-none focus:shadow-outline"
             >
               Log in

@@ -1,18 +1,6 @@
-import mongoose from "mongoose";
+import { Pool } from "pg";
 
-let isConnected = false;
+export const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
 
-export const connectToDB = async () => {
-  if (isConnected) {
-    console.log("Already connected to DB.");
-    return;
-  }
-
-  try {
-    await mongoose.connect(process.env.MONGODB_URI);
-    isConnected = true
-    console.log("MongoDB connected.");
-  } catch (err) {
-    console.log(err);
-  }
-};
