@@ -20,7 +20,7 @@ function RegisterForm({ onSubmitted }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded">
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded grid md:grid-cols-2 gap-6">
       <div className="mb-4">
         <label
           className="block text-gray-700 text-sm font-bold mb-2"

@@ -29,6 +29,12 @@ const Nav = () => {
         >
           About us
         </Link>
+        <Link
+          href="/supplier"
+          className="hover:bg-blue-700 rounded  text-white font-bold py-1 px-2 m-2 focus:outline-none focus:shadow-outline"
+        >
+          Supplier
+        </Link>
 
         {session?.user ? (
           <>
