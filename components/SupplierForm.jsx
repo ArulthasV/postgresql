@@ -20,7 +20,7 @@ function SupplierForm({ onSubmitted }) {
   const [payType, setPayType] = useState("");
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded">
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="mb-4">
         <label
           className=" text-gray-700 text-sm font-bold mb-2"
@@ -374,12 +374,12 @@ function SupplierForm({ onSubmitted }) {
           })}
           type="radio"
           id="notActive"
-          value="notActive"
+          value="not active"
           className="mx-1"
         />
         <label htmlFor="notActive">Not active</label>
       </div>
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-center mb-4">
         <button
           className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"

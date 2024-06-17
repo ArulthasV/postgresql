@@ -4,29 +4,29 @@ import React from "react";
 import SupplierForm from "@components/SupplierForm";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Link from "next/link";
 
 
 const Supplier = () => {
 
   const handleSubmit = async (data) => {
-    console.log(data);
-    // try {
-    //   const response = await fetch("/api/user", {
-    //     method: "POST",
-    //     body: JSON.stringify({ email: data.email, password: data.password }),
-    //   });
-    //   if (response.status === 201) {
-    //     toast.success("Successfully registered!")
-    //   } else if (response.status === 409) {
-    //     throw new Error("Email already registered!");
-    //   } else if(response.status === 500) {
-    //     throw new Error("Internal server error!");
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    //   toast.success(err.message)
-    // }
+
+    try {
+      console.log(data);
+      const response = await fetch("/api/supplier", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      if (response.status === 201) {
+        toast.success("Successfully registered!")
+      } else if (response.status === 409) {
+        throw new Error("Supplier already exists!");
+      } else if(response.status === 500) {
+        throw new Error("Internal server error!");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.success(err.message)
+    }
   };
 
   return (
