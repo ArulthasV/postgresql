@@ -1,4 +1,5 @@
 import {pool} from "@utils/database"
+import bcrypt from "bcrypt"
 
 export const POST = async (req) => {   
     try{
@@ -9,7 +10,8 @@ export const POST = async (req) => {
             return new Response(null,{status:409})
         }
         else{
-            const result = await pool.query('insert into users(email,password) values($1,$2)',[email,password])
+            const hashedPassword = await bcrypt.hash(password,10)
+            const result = await pool.query('insert into users(email,password) values($1,$2)',[email,hashedPassword])
             return new Response(null,{status:201})
         }
     }catch(err){
