@@ -337,7 +337,7 @@ function SupplierForm({ onSubmitted }) {
       </div>
       <div className="mb-4">
         <label className="text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-          Email
+          Employee email
         </label>
         <input
           {...register("employeeEmail", {
@@ -378,6 +378,65 @@ function SupplierForm({ onSubmitted }) {
           className="mx-1"
         />
         <label htmlFor="notActive">Not active</label>
+      </div>
+      <div className="mb-4">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="luUser"
+        >
+          LU User
+        </label>
+        <select
+          id="luUser"
+          {...register("luUser", {
+            required: "LU User is required.",
+          })}
+        >
+          <option value="">Select...</option>
+          <option value="arulthas">arulthas</option>
+          <option value="suganjan">suganjan</option>
+          <option value="saanusan">saanusan</option>
+          <option value="paranika">paranika</option>
+          <option value="jenifer">jenifer</option>
+        </select>
+        {errors.luUser && errors.luUser.message}
+      </div>
+      <div className="mb-4">
+        <label className="text-gray-700 text-sm font-bold mb-2" htmlFor="luDate">
+          LU Date
+        </label>
+        <input
+          {...register("luDate", {
+            required: "LU Date is required.",
+          })}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="luDate"
+          type="date"
+        />
+        {errors.luDate && errors.luDate.message}
+      </div>
+      <div className="mb-4">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="luPremises"
+        >
+          LU Premises
+        </label>
+        <select
+          id="luPremises"
+          {...register("luPremises", {
+            required: "LU Premis is required.",
+          })}
+        >
+          <option value="">Select...</option>
+          <option value="JAF">JAF</option>
+          <option value="COL">COL</option>
+          <option value="BAT">BAT</option>
+          <option value="BAD">BAD</option>
+          <option value="KAN">KAN</option>
+          <option value="MAT">MAT</option>
+        </select>
+        {errors.luPremises && errors.luPremises.message}
       </div>
       <div className="flex items-center justify-center mb-4">
         <button
