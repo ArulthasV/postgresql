@@ -32,8 +32,8 @@ function SupplierForm({ onSubmitted }) {
           {...register("supplierName", {
             required: "Supplier name is required.",
             pattern: {
-              value: /^[A-Za-z]+$/,
-              message: "Use only English alphabetic letters.",
+              value: /^[a-zA-Z0-9]+$/,
+              message: "Use only English alpha numeric characters.",
             },
           })}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
