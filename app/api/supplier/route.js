@@ -5,8 +5,7 @@ export const POST = async (req) => {
     try{    
         const data = await req.json()
         const result = await pool.query('CALL "Jaffna_dev"."SP_JAT_REF_SUPPLIER_FIND_SUPPLIER"($1,$2,$3,$4)',[data.organizationId,code,org_id,org_name])
-        console.log(result);
-        if(result.rows.length>0){
+        if(result.rowCount){
             return new Response(null,{status:409})
         }
         else{

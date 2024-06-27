@@ -11,7 +11,6 @@ const Supplier = () => {
   const handleSubmit = async (data) => {
 
     try {
-      console.log(data);
       const response = await fetch("/api/supplier", {
         method: "POST",
         body: JSON.stringify(data),
