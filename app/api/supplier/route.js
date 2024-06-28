@@ -18,3 +18,14 @@ export const POST = async (req) => {
         return new Response(null,{status:500})
     }
 }
+
+export const GET = async () => {
+    let data
+    try{
+        const result = await pool.query('CALL "Jaffna_dev"."SP_JAT_REF_SUPPLIER_GET_ALL_SUPPLIERS"($1)',[data])
+        return new Response(JSON.stringify(result),{status:200})
+    }catch(err){
+        console.log(err.message);
+        return new Response(null,{status:500})       
+    }
+}
